@@ -1,4 +1,5 @@
 const sql = require("mssql/msnodesqlv8");
+const cors = require("cors");
 const express = require("express");
 const multer = require("multer");
 const fs = require("fs");
@@ -12,20 +13,20 @@ const uploader = multer({
 var config = {
   server: "ABINASH\\SQLEXPRESS",
   database: "testdb",
-  driver: 'msnodesqlv8',
+  driver: "msnodesqlv8",
   options: {
-    trustedConnection: true
-  }
+    trustedConnection: true,
+  },
 };
 
-sql.connect(config,function(err){
-    if(err)console.log(err);
-    var request = new sql.Request();
-    request.query("select * from users", function(err,records){
-        if(err)console.log(err);  
-        else console.log(records);
-    })
-})
+sql.connect(config, function (err) {
+  if (err) console.log(err);
+  var request = new sql.Request();
+  request.query("select * from users", function (err, records) {
+    if (err) console.log(err);
+    else console.log(records);
+  });
+});
 app.post("/upload", uploader.single("file"), async (req, res) => {
   const file = req.file;
 

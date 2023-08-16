@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize("testdb", "sa", "admin123", {
-  host: "ABINASH\\SQLEXPRESS",
+  host: "ABINASH",
   dialect: "mssql",
 });
 
