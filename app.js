@@ -22,7 +22,7 @@ sql.connect(config,function(err){
     if(err)console.log(err);
     var request = new sql.Request();
     request.query("select * from users", function(err,records){
-        if(err)console.log(err);
+        if(err)console.log(err);  
         else console.log(records);
     })
 })
