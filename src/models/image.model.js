@@ -1,15 +1,15 @@
-// module.exports = (sequelize, Sequelize) => {
-//   const Tutorial = sequelize.define("tutorial", {
-//     title: {
-//       type: Sequelize.STRING,
-//     },
-//     description: {
-//       type: Sequelize.STRING,
-//     },
-//     published: {
-//       type: Sequelize.BOOLEAN,
-//     },
-//   });
+// module.exports = (sequelize, DataTypes) => {
+//     const Image = sequelize.define("image", {
+//       type: {
+//         type: DataTypes.STRING,
+//       },
+//       name: {
+//         type: DataTypes.STRING,
+//       },
+//       data: {
+//         type: DataTypes.BLOB("long"),
+//       },
+//     });
 
-//   return Tutorial;
-// };
+//     return Image;
+//   };
