@@ -1,9 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const db = require("./app/models");
-require("./app/config/db");
-
 const app = express();
+const db = require("./src/models");
+const initRoutes = require("./src/routes/web");
+
+global.__basedir = __dirname;
 
 // Middleware for handling CORS
 var corsOptions = {
@@ -11,21 +12,15 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Parse requests of content-type - application/json
-app.use(express.json());
-
-// Parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+initRoutes(app);
 
-// Test Sequelize database connection
+db.sequelize.sync();
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and re-sync db.");
+// });
 
-// Continue setting up the Express routes
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the server" });
-});
-
-// Set port and start the server
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+let port = 8080; // Changed the port to 8080
+app.listen(port, () => {
+  console.log(`Running at localhost:${port}`);
 });
